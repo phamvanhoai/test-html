@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FormWizard_v1 (CDN)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Material Design Iconic Font (CDN) -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" href="css/4.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="#" id="wizard" class="wizard">
+            <!-- SECTION 1 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop"
+                            alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Please fill with your details</p>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="First Name" class="form-control" required>
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Last Name" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="email" placeholder="Your Email" class="form-control" required>
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Phone Number" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="number" min="0" placeholder="Age" class="form-control">
+                            </div>
+                            <div class="form-holder" style="align-self:flex-end; transform: translateY(4px);">
+                                <div class="checkbox-tick">
+                                    <label class="male">
+                                        <input type="radio" name="gender" value="male" checked> Male
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="female">
+                                        <input type="radio" name="gender" value="female"> Female
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-circle">
+                            <label>
+                                <input type="checkbox" checked> Nor again is there anyone who loves or pursues or
+                                desires to obtain.
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
+                            alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Please fill with additional info</p>
+
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="text" placeholder="Address" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder">
+                                <input type="text" placeholder="City" class="form-control">
+                            </div>
+                            <div class="form-holder">
+                                <input type="text" placeholder="Zip Code" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">Your country</div>
+                                    <i class="zmdi zmdi-caret-down"></i>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="United States">United States</li>
+                                    <li rel="United Kingdom">United Kingdom</li>
+                                    <li rel="Viet Nam">Viet Nam</li>
+                                </ul>
+                            </div>
+                            <div class="form-holder"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3 -->
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1200&auto=format&fit=crop"
+                            alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>Registration</h3>
+                        </div>
+                        <p>Send an optional message</p>
+
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <textarea placeholder="Your message here!" class="form-control"
+                                    style="height:99px;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-circle mt-24">
+                            <label>
+                                <input type="checkbox" checked> Please accept <a href="#">terms and conditions ?</a>
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <!-- jQuery + jQuery Steps (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+
+    <script>
+        $(function () {
+            // Khởi tạo jQuery Steps
+            $("#wizard").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "fade",
+                enableAllSteps: true,
+                transitionEffectSpeed: 500,
+                labels: { finish: "Submit", next: "Forward", previous: "Backward" }
+            });
+
+            // Click dot-step -> cập nhật class .checked (giống code gốc)
+            $('.wizard > .steps li a').on('click', function () {
+                $(this).parent().addClass('checked');
+                $(this).parent().prevAll().addClass('checked');
+                $(this).parent().nextAll().removeClass('checked');
+            });
+
+            // Nút điều hướng custom (nếu bạn thêm .forward/.backward trong HTML)
+            $('.forward').on('click', function () { $("#wizard").steps('next'); });
+            $('.backward').on('click', function () { $("#wizard").steps('previous'); });
+
+            // Select Dropdown tuỳ biến
+            $('html').on('click', function () { $('.select .dropdown').hide(); });
+            $('.select').on('click', function (e) { e.stopPropagation(); });
+            $('.select .select-control').on('click', function () {
+                $(this).closest('.select').find('.dropdown').toggle();
+            });
+            $('.select .dropdown li').on('click', function () {
+                const text = $(this).attr('rel');
+                const $select = $(this).closest('.select');
+                $select.find('.select-control').text(text);
+                $select.find('.dropdown').hide();
+            });
+
+            // Đánh dấu step đầu tiên là .first (để chấm tròn đầu tiên lên màu)
+            $('.wizard > .steps li:first').addClass('first checked');
+        });
+    </script>
+</body>
+
+</html>

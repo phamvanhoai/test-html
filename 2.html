@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Đặt vé máy bay</title>
+
+    <!-- Bootstrap 4.6.2 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome 4.7.0 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .alert {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertBox">
+            <div id="thongbaoloi"></div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Form đặt vé máy bay</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form id="frmDatVeMayBay">
+                    <div class="form-group">
+                        <label for="txtHoTen">Họ tên</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user-o"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Họ tên" name="txtHoTen" id="txtHoTen">
+                            <div class="input-group-append">
+                                <span class="input-group-text">vnđ</span>
+                            </div>
+                        </div>
+                        <small id="txtHoTenHelp" class="form-text text-muted">Phải nhập 5 ký tự, in hoa...</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtDiaChi">Địa chỉ</label>
+                        <input type="text" class="form-control" name="txtDiaChi" id="txtDiaChi">
+                        <small id="txtDiaChiHelp" class="form-text text-muted">Phải nhập 5 ký tự, in hoa...</small>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Đi từ</label>
+                                <select name="slNoiDi" id="slNoiDi" class="form-control">
+                                    <option value="hn">Hà Nội</option>
+                                    <option value="ct">Cần Thơ</option>
+                                    <option value="hp">Hải Phòng</option>
+                                    <option value="dn">Đà Nẵng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Đến</label>
+                                <select name="slNoiDen" id="slNoiDen" class="form-control">
+                                    <option value="hn">Hà Nội</option>
+                                    <option value="ct">Cần Thơ</option>
+                                    <option value="hp">Hải Phòng</option>
+                                    <option value="dn">Đà Nẵng</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chọn chiều đi (Khứ hồi)</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="chkChieuDi">
+                            <label class="form-check-label" for="chkChieuDi">Đi</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="2" id="chkChieuVe">
+                            <label class="form-check-label" for="chkChieuVe">Về</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary form-control" id="btnDatVe">Đặt vé</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery + Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#btnDatVe').click(function () {
+                var hoten = $('#txtHoTen').val().trim();
+                var diachi = $('#txtDiaChi').val().trim();
+                var loi = '';
+
+                // Validate họ tên
+                if (hoten === '') {
+                    loi += '<li>Vui lòng nhập họ tên</li>';
+                } else if (hoten.length < 5) {
+                    loi += '<li>Vui lòng nhập họ tên >= 5 ký tự</li>';
+                }
+
+                // Validate địa chỉ
+                if (diachi === '') {
+                    loi += '<li>Vui lòng nhập địa chỉ</li>';
+                } else if (diachi.length < 5) {
+                    loi += '<li>Vui lòng nhập địa chỉ >= 5 ký tự</li>';
+                }
+
+                if (loi !== '') {
+                    $('#thongbaoloi').html('<ul>' + loi + '</ul>');
+                    $('#alertBox').show();
+                } else {
+                    $('#alertBox').removeClass('alert-warning').addClass('alert-success');
+                    $('#thongbaoloi').html('<strong>Đặt vé thành công!</strong>');
+                    $('#alertBox').show();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
